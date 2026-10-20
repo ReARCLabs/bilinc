@@ -1,0 +1,56 @@
+"""Bilinc 2.4.1: cloud-only SDK for agent memory."""
+
+from bilinc.client import (
+    ACTIVATION_SIGNUP_URL,
+    API_VERSION,
+    CANONICAL_ERROR_CODES,
+    DEFAULT_BASE_URL,
+    INSTALL_URL,
+    RETRYABLE_ERROR_CODES,
+    SIGNUP_URL,
+    Bilinc,
+    BilincApiKeyRequired,
+    BilincAuthError,
+    BilincCloudError,
+    BilincConfirmationExpiredError,
+    BilincConflictError,
+    BilincConnectionError,
+    BilincEntitlementError,
+    BilincError,
+    BilincNotFoundError,
+    BilincPaymentRequiredError,
+    BilincRateLimitError,
+    BilincRuntimeUnavailableError,
+    BilincValidationError,
+    CloudClient,
+)
+
+__version__ = "2.4.1"
+version = __version__
+
+__all__ = [
+    "ACTIVATION_SIGNUP_URL",
+    "API_VERSION",
+    "Bilinc",
+    "BilincApiKeyRequired",
+    "BilincAuthError",
+    "BilincCloudError",
+    "BilincConfirmationExpiredError",
+    "BilincConflictError",
+    "BilincConnectionError",
+    "BilincEntitlementError",
+    "BilincError",
+    "BilincNotFoundError",
+    "BilincPaymentRequiredError",
+    "BilincRateLimitError",
+    "BilincRuntimeUnavailableError",
+    "BilincValidationError",
+    "CANONICAL_ERROR_CODES",
+    "CloudClient",
+    "DEFAULT_BASE_URL",
+    "INSTALL_URL",
+    "RETRYABLE_ERROR_CODES",
+    "SIGNUP_URL",
+    "__version__",
+    "version",
+]

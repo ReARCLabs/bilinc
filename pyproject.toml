@@ -1,0 +1,85 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bilinc"
+version = "2.4.1"
+description = "Cloud-only memory SDK and MCP adapter for autonomous agents"
+readme = "README.md"
+license = "BUSL-1.1"
+authors = [{name = "Bilinc Team"}]
+requires-python = ">=3.10"
+keywords = [
+    "ai-agent-memory",
+    "context-management",
+    "belief-revision",
+    "state-plane",
+    "agm",
+    "mcp-server",
+    "verification",
+    "context-budget",
+    "neuro-symbolic",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+dependencies = [
+    "certifi>=2024.2.2",
+    "mcp>=1.10.0,<2.0",
+]
+
+[project.urls]
+Homepage = "https://bilinc.space"
+Documentation = "https://bilinc.space/docs"
+Repository = "https://github.com/ReARCLabs/bilinc-python"
+Changelog = "https://bilinc.space/changelog"
+Issues = "https://github.com/ReARCLabs/bilinc-python/issues"
+
+[project.optional-dependencies]
+dev = [
+    "build>=1.2,<2.0",
+    "pytest>=7.0,<9.0",
+    "pytest-cov>=4.0,<6.0",
+    "pytest-asyncio>=0.23,<1.0",
+    "mypy>=1.0,<2.0",
+    "ruff>=0.15.4,<0.16",
+    "tomli>=2,<3; python_version < '3.11'",
+]
+internal = [
+    "fastapi>=0.110,<2.0",
+    "networkx>=3.0,<4.0",
+    "starlette>=0.36,<2.0",
+    "z3-solver>=4.12,<5.0",
+]
+semantic = [
+    "numpy>=1.24,<3.0",
+    "sentence-transformers>=3.4,<4.0",
+]
+[project.scripts]
+bilinc = "bilinc.cli.main:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+packages = ["bilinc", "bilinc.cli"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_default_fixture_loop_scope = "function"
+filterwarnings = [
+    "ignore:unclosed event loop:ResourceWarning",
+    "ignore:Exception ignored in.*BaseEventLoop:pytest.PytestUnraisableExceptionWarning",
+    "ignore:Exception ignored in.*socket:pytest.PytestUnraisableExceptionWarning",
+    "default::pytest.PytestConfigWarning",
+]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
