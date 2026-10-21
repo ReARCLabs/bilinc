@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "canonical_repository": "https://github.com/ReARCLabs/bilinc",
+  "source_commit": "04ff9fb092b34bf99a9195a3098203d1f1f3c5dd",
+  "verified_at": "2026-10-21",
+  "package": {
+    "name": "bilinc",
+    "version": "2.5.0",
+    "requires_python": ">=3.10",
+    "license": "BUSL-1.1",
+    "install": "pip install bilinc",
+    "exports": [
+      "Bilinc",
+      "BilincApiKeyRequired",
+      "BilincAuthError",
+      "BilincCloudError",
+      "BilincConfirmationExpiredError",
+      "BilincConflictError",
+      "BilincConnectionError",
+      "BilincEntitlementError",
+      "BilincError",
+      "BilincNotFoundError",
+      "BilincPaymentRequiredError",
+      "BilincRateLimitError",
+      "BilincRuntimeUnavailableError",
+      "BilincValidationError",
+      "API_VERSION",
+      "CANONICAL_ERROR_CODES",
+      "CloudClient",
+      "RETRYABLE_ERROR_CODES"
+    ]
+  },
+  "cloud_mcp": {
+    "transport": "stdio",
+    "tools": [
+      "commit_mem",
+      "recall",
+      "revise",
+      "forget",
+      "status",
+      "snapshot",
+      "diff",
+      "rollback",
+      "list_memories",
+      "history",
+      "confirm"
+    ]
+  },
+  "public_urls": {
+    "documentation": "https://bilinc.space/docs",
+    "signup": "https://bilinc.space/signup",
+    "cloud_health": "https://bilinc.space/api/cloud/health",
+    "cloud_status": "https://bilinc.space/api/cloud/status"
+  },
+  "benchmark_claims": {
+  "state": "historical_scoped",
+    "public_approved": true,
+    "label": "Frozen regression receipt",
+    "scope": "LongMemEval-s cleaned retrieval fixture, 500 questions",
+    "metrics": {
+      "hit_at_5": "98.0%",
+      "ndcg_at_5": "0.913"
+    },
+    "qualification": "This is a frozen isolated retrieval guardrail, not a current hosted SLA, end-to-end agent score, or competitor ranking.",
+    "rule": "The receipt may be presented only with its isolated retrieval scope and qualification; do not extend it into a current product-performance or competitor claim."
+  },
+  "boundary": {
+    "public_package": "Cloud-only SDK, CLI, and Cloud MCP adapter for hosted Bilinc Cloud.",
+    "not_shipped": "Local storage and private runtime internals are not shipped in the public package."
+  }
+}
