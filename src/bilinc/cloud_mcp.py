@@ -161,12 +161,19 @@ def build_server():
         reason: str,
         expected_version: str | None = None,
         idempotency_key: str | None = None,
+        purge: bool = False,
     ) -> dict[str, Any]:
         """Remove a memory from active recall. DESTRUCTIVE.
 
         This is a destructive operation: the entry stops influencing every
         future recall in this project. `reason` is required and is written to
         the audit trail. The deleted value is never returned.
+
+        With `purge=true` the memory's stored values are also removed from the
+        audit trail and every checkpoint of the project (removal from storage
+        and history; key names and value hashes remain). It also works on a
+        memory forgotten earlier and cannot be undone. Only purge when the user
+        asks for the content to be gone, not just out of recall.
 
         Use this for state that is genuinely obsolete. To correct a memory
         rather than remove it, use `revise`.
@@ -177,6 +184,7 @@ def build_server():
             reason=reason,
             expected_version=expected_version,
             idempotency_key=idempotency_key,
+            purge=purge,
         )
 
     @mcp.tool()
@@ -289,11 +297,15 @@ def build_server():
         cursor: str | None = None,
         limit: int = 50,
         values: str = "preview",
+        sources: list[str] | None = None,
+        order: str | None = None,
     ) -> dict[str, Any]:
-        """List the memories stored in this Bilinc Cloud project, ordered by key.
+        """List the memories stored in this Bilinc Cloud project.
 
-        Read-only and free. Filters: key `prefix`, `memory_type`, and ISO-8601
-        `updated_after` / `updated_before`. Returns up to `limit` entries
+        Read-only and free. Filters: key `prefix`, `memory_type`, ISO-8601
+        `updated_after` / `updated_before`, and `sources` (exact "saved by"
+        values). `order` is "key" (default), "newest" (most recently updated
+        first) or "oldest"; pass the same order with a `cursor`. Returns up to `limit` entries
         (1-100) with key, type, importance, source, created and updated times,
         entry version, and a value whose size follows `values` ("preview" by
         default, "full", or "none"). `total` counts all matches; `nextCursor`
@@ -308,6 +320,8 @@ def build_server():
             cursor=cursor,
             limit=limit,
             values=values,
+            sources=sources,
+            order=order,
         )
 
     @mcp.tool(
