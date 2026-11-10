@@ -8,12 +8,16 @@ from pathlib import Path
 
 import pytest
 
+WIKI_MODULES = sorted(
+    path.name for path in (Path(__file__).resolve().parents[1] / "src" / "bilinc" / "wiki").glob("*.py")
+)
+
 
 def test_public_api_is_cloud_only():
     import bilinc
 
-    assert bilinc.__version__ == "2.6.3"
-    assert bilinc.version == "2.6.3"
+    assert bilinc.__version__ == "2.7.0"
+    assert bilinc.version == "2.7.0"
     assert "utm_campaign=activation_2_3_4" in bilinc.ACTIVATION_SIGNUP_URL
     assert hasattr(bilinc, "Bilinc")
     assert hasattr(bilinc, "CloudClient")
@@ -31,7 +35,7 @@ def test_declared_wheel_packages_stay_cloud_only():
     with (root / "pyproject.toml").open("rb") as handle:
         pyproject = tomllib.load(handle)
 
-    assert pyproject["tool"]["setuptools"]["packages"] == ["bilinc", "bilinc.cli"]
+    assert pyproject["tool"]["setuptools"]["packages"] == ["bilinc", "bilinc.cli", "bilinc.wiki"]
     assert set(pyproject["project"]["dependencies"]) == {"certifi>=2024.2.2", "mcp>=1.10.0,<2.0"}
 
 
@@ -110,9 +114,9 @@ def test_cloud_client_commit_posts_to_hosted_api():
             "headers": {
                 "Authorization": "Bearer bil_live_example",
                 "Content-Type": "application/json",
-                "User-Agent": "bilinc-python/2.6.3",
+                "User-Agent": "bilinc-python/2.7.0",
                 "X-Bilinc-Client": "python-sdk",
-                "X-Bilinc-Client-Version": "2.6.3",
+                "X-Bilinc-Client-Version": "2.7.0",
             },
             "body": json.dumps(
                 {
@@ -188,7 +192,7 @@ def test_cloud_client_status_reads_the_authenticated_status_endpoint():
             "url": "https://bilinc.space/api/cloud/status",
             "headers": {
                 "Authorization": "Bearer bil_live_example",
-                "User-Agent": "bilinc-python/2.6.3",
+                "User-Agent": "bilinc-python/2.7.0",
             },
             "body": None,
             "timeout": 30.0,
@@ -414,6 +418,8 @@ def test_built_wheel_does_not_ship_local_runtime(tmp_path):
     assert not any(name.startswith(_forbidden_package_prefixes()) for name in names)
     assert "bilinc/client.py" in names
     assert "bilinc/cloud_mcp.py" in names
+    assert "__init__.py" in WIKI_MODULES
+    assert {f"bilinc/wiki/{module}" for module in WIKI_MODULES} <= names
 
 
 def test_built_sdist_does_not_ship_local_runtime_sources():
@@ -431,6 +437,7 @@ def test_built_sdist_does_not_ship_local_runtime_sources():
     assert not any(name.startswith(_forbidden_package_prefixes(root)) for name in names)
     assert f"{root}bilinc/client.py" in names
     assert f"{root}bilinc/cloud_mcp.py" in names
+    assert {f"{root}bilinc/wiki/{module}" for module in WIKI_MODULES} <= names
     assert f"{sdist_path.name.removesuffix('.tar.gz')}/tests/test_cloud_only_package.py" in names
     assert not any(
         name.startswith(f"{sdist_path.name.removesuffix('.tar.gz')}/tests/")
