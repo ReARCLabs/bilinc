@@ -57,7 +57,7 @@ wheels = [
 
 [[package]]
 name = "bilinc"
-version = "2.7.0"
+version = "2.7.1"
 source = { editable = "." }
 dependencies = [
     { name = "certifi" },
@@ -108,23 +108,23 @@ requires-dist = [
     { name = "build", marker = "extra == 'dev'", specifier = ">=1.2,<2.0" },
     { name = "certifi", specifier = ">=2024.2.2" },
     { name = "fastapi", marker = "extra == 'internal'", specifier = ">=0.110,<2.0" },
-    { name = "huggingface-hub", marker = "extra == 'embeddings'", specifier = ">=0.23,<2.0" },
+    { name = "huggingface-hub", marker = "extra == 'embeddings'", specifier = ">=0.23,<3.0" },
     { name = "mcp", specifier = ">=1.10.0,<2.0" },
-    { name = "mypy", marker = "extra == 'dev'", specifier = ">=1.0,<2.0" },
+    { name = "mypy", marker = "extra == 'dev'", specifier = ">=1.0,<3.0" },
     { name = "networkx", marker = "extra == 'internal'", specifier = ">=3.0,<4.0" },
     { name = "numpy", marker = "extra == 'embeddings'", specifier = ">=1.24,<3.0" },
     { name = "numpy", marker = "extra == 'internal'", specifier = ">=1.24,<3.0" },
     { name = "numpy", marker = "extra == 'semantic'", specifier = ">=1.24,<3.0" },
     { name = "onnxruntime", marker = "extra == 'embeddings'", specifier = ">=1.18,<2.0" },
-    { name = "pytest", marker = "extra == 'dev'", specifier = ">=7.0,<9.0" },
-    { name = "pytest-asyncio", marker = "extra == 'dev'", specifier = ">=0.23,<1.0" },
-    { name = "pytest-cov", marker = "extra == 'dev'", specifier = ">=4.0,<6.0" },
+    { name = "pytest", marker = "extra == 'dev'", specifier = ">=7.0,<10.0" },
+    { name = "pytest-asyncio", marker = "extra == 'dev'", specifier = ">=0.23,<2.0" },
+    { name = "pytest-cov", marker = "extra == 'dev'", specifier = ">=4.0,<8.0" },
     { name = "ruff", marker = "extra == 'dev'", specifier = ">=0.15.4,<0.16" },
-    { name = "sentence-transformers", marker = "extra == 'semantic'", specifier = ">=3.4,<4.0" },
+    { name = "sentence-transformers", marker = "extra == 'semantic'", specifier = ">=3.4,<7.0" },
     { name = "starlette", marker = "extra == 'internal'", specifier = ">=0.36,<2.0" },
     { name = "tokenizers", marker = "extra == 'embeddings'", specifier = ">=0.15,<1.0" },
     { name = "tomli", marker = "python_full_version < '3.11' and extra == 'dev'", specifier = ">=2,<3" },
-    { name = "z3-solver", marker = "extra == 'internal'", specifier = ">=4.12,<5.0" },
+    { name = "z3-solver", marker = "extra == 'internal'", specifier = ">=4.12,<6.0" },
 ]
 provides-extras = ["dev", "internal", "semantic", "embeddings"]
 
