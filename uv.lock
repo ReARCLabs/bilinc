@@ -57,7 +57,7 @@ wheels = [
 
 [[package]]
 name = "bilinc"
-version = "2.7.1"
+version = "2.7.2"
 source = { editable = "." }
 dependencies = [
     { name = "certifi" },
@@ -106,10 +106,10 @@ semantic = [
 [package.metadata]
 requires-dist = [
     { name = "build", marker = "extra == 'dev'", specifier = ">=1.2,<2.0" },
-    { name = "certifi", specifier = ">=2024.2.2" },
+    { name = "certifi", specifier = ">=2026.10.18" },
     { name = "fastapi", marker = "extra == 'internal'", specifier = ">=0.110,<2.0" },
     { name = "huggingface-hub", marker = "extra == 'embeddings'", specifier = ">=0.23,<3.0" },
-    { name = "mcp", specifier = ">=1.10.0,<2.0" },
+    { name = "mcp", specifier = ">=1.30.0,<2.0" },
     { name = "mypy", marker = "extra == 'dev'", specifier = ">=1.0,<3.0" },
     { name = "networkx", marker = "extra == 'internal'", specifier = ">=3.0,<4.0" },
     { name = "numpy", marker = "extra == 'embeddings'", specifier = ">=1.24,<3.0" },
